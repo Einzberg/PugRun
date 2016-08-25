@@ -13,8 +13,6 @@ public class Board extends JPanel implements ActionListener, Runnable {
 	Timer time;
 	Thread animator;
 	int v = 272;
-	//Enemy en;
-	//Enemy en2;
 	boolean k = false;
 	boolean lost = false;
 	static Font font = new Font("SanSerif", Font.BOLD, 24);
@@ -29,7 +27,9 @@ public class Board extends JPanel implements ActionListener, Runnable {
 	int plusFiveInt = 0;
 	ImageIcon plusOne;
 	ImageIcon plusFive;
-	
+	boolean h = false;
+	boolean done = false;
+
 	public void fire(){
 		if (ammo > 0){
 			bullety = v + 23;
@@ -44,14 +44,13 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		{         fire(); 
 		}
 	}
-	
+
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_SPACE)
 		{
 		}
 	}
-
 
 	public Board() {
 
@@ -68,7 +67,7 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		makeEnemies();
 		bullets = new ArrayList();
 	}
-	
+
 	public void makeEnemies(){
 		int x = 700;
 		for(int i = 0; i < 30; i++){
@@ -77,26 +76,18 @@ public class Board extends JPanel implements ActionListener, Runnable {
 			Enemy emi;
 			Random randomnum = new Random();
 			int ranran = randomnum.nextInt(550);
-			
 			if(ran == 0){
-				 emi = new Enemy(x+ranran, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
+				emi = new Enemy(x+ranran, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
 				enemies.add(emi);
 				x+=830;}
 			else{
 				emi = new Enemy(x+ranran, 200, "C:/Users/MaxBlue/Desktop/enemy.png");
 				enemies.add(emi);
 				x+=830;}
-			}
 		}
-		/*en = new Enemy(700, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
-		en2 = new Enemy(900, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
-		enemies.add(en);
-		enemies.add(en2);*/
-	
+	}
 
 	public void actionPerformed(ActionEvent e) {
-
-		//ArrayList bullets = getBullets();
 		for(int i =0; i < bullets.size(); i++){
 			Bullet m = (Bullet) bullets.get(i);
 			if (m.visible == true)
@@ -104,29 +95,20 @@ public class Board extends JPanel implements ActionListener, Runnable {
 			else
 				bullets.remove(i);
 		}
-
 		dude.move();
 		calculatePoints();
 		for(int i = 0; i < enemies.size(); i++){
 			Enemy emi = (Enemy) enemies.get(i);
 			emi.move(dude.getdx());
 		}
-/*
-		if (dude.x > 400){
-			en.move(dude.getdx());
-		}
-		if (dude.x > 500){
-			en2.move(dude.getdx());
-		}
-*/
 		repaint();
 	}
+
 	public void calculatePoints(){
 		for(int i=0; i < enemies.size(); i++){
 			Enemy currentEnemy = (Enemy) enemies.get(i);
-			//System.out.println(currentEnemy.getX());
 			if((currentEnemy.getX() == 75 || currentEnemy.getX() == 74 || currentEnemy.getX() == 76 ||currentEnemy.getX() == 73 ||currentEnemy.getX() == 77) && v < currentEnemy.getY()){
-				
+
 				if(currentEnemy.getY() < 210){
 					points += 5;
 					fiver = true;
@@ -138,11 +120,9 @@ public class Board extends JPanel implements ActionListener, Runnable {
 					plusOneInt = plusOneInt + 50;			}	
 			}
 		}
-		//System.out.println(points);
 	}
+	
 	public void paint(Graphics g) {
-		
-		
 		if(lost) System.exit(0);
 		if (k==false && dude.dy == 1)
 		{
@@ -174,7 +154,7 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		g2d.setColor(Color.BLUE);
 		g2d.drawString("Ammo left " + ammo, 400, 20);
 		g2d.drawString("Points " + points, 100, 20);
-		
+
 		if(fiver == true){
 			g2d.drawString("fiver" + ammo, 100, 20);
 			fiver = false;
@@ -183,34 +163,23 @@ public class Board extends JPanel implements ActionListener, Runnable {
 			g2d.drawString("oner" + ammo, 200, 20);
 			oner = false;
 		}
-		
+
 		if(plusOneInt > 0){
 			plusOneInt--;
 			g2d.drawImage(plusOne.getImage(), 175, 272, null);
 		}
-		
+
 		if(plusFiveInt > 0){
 			plusFiveInt--;
 			g2d.drawImage(plusFive.getImage(), 175, 200, null);
-			
+
 		}
-		/*
-		if(dude.x > 400){
-			if(en.isAlive() == true)
-				g2d.drawImage(en.getImg(), en.getX(), en.getY(), null);
-		}
-		if(dude.x > 500){
-			if(en2.isAlive() == true)
-				g2d.drawImage(en.getImg(), en2.getX(), en2.getY(), null);
-		}
-		*/
 		for(int i = 0; i < enemies.size(); i++){
 			Enemy em = (Enemy) enemies.get(i);
 			if(em.isAlive() == true)
 				g2d.drawImage(em.getImg(), em.getX(), em.getY(), null);
 		}
 		checkCollisions();
-	//	g.drawLine(0, 232, 1000, 232);
 	}
 
 	private class AL extends KeyAdapter {
@@ -230,9 +199,6 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		beforeTime = System.currentTimeMillis();
 		boolean secondjump = false;
 		while(done == false){
-			//cycle();
-			//for(int i = 0; i < 10; i++)
-			//v--;
 			if (v <= 272 && secondjump == false) v=v-15;
 			if (v <= 20) secondjump = true;
 			if (v >= 10) {v=v+5;};
@@ -248,18 +214,15 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		h = false;
 		k = false;
 	}
-	boolean h = false;
-	boolean done = false;
+
 
 	public void cycle(){
 
 		if (h == false) 
-			//v-=10;
 			if (v == 0) h = true;
 		if (h == true && v <= 272) v++;
 		if (v == 272) done = true;
 	}
-
 
 	public void checkCollisions(){
 		for(int a = 0; a < enemies.size(); a++){
@@ -267,48 +230,17 @@ public class Board extends JPanel implements ActionListener, Runnable {
 			Rectangle enemyRec = enemy.getBounds();
 			Rectangle dudeRec = new Rectangle(75, v, 90, 73);
 			if(dudeRec.intersects(enemyRec) && enemy.isAlive){
-				//System.out.println(d.x + "x" + v + "y" + d.height + "height" + d.width + "width");
-				//System.out.println(r1.x + "x" + r1.y + "y" + r1.height + "height" + r1.width + "width");
 				lost = true;
 			}
-				for(int i = 0; i < bullets.size(); i++){
-					Bullet bullet = (Bullet) bullets.get(i);
-					Rectangle bulletRec = bullet.getBounds();
+			for(int i = 0; i < bullets.size(); i++){
+				Bullet bullet = (Bullet) bullets.get(i);
+				Rectangle bulletRec = bullet.getBounds();
 				if(bulletRec.intersects(enemyRec) && enemy.isAlive()){
 					enemy.isAlive = false;
 					enemies.remove(enemy);
 					bullet.visible = false;
-				}
-				
-
+				}				
 			}
 		}
-		
-		/*
-		Rectangle r1 = en.getBounds();
-		Rectangle r2 = en2.getBounds();
-		for(int i =0; i < bullets.size(); i++){
-			Bullet m = (Bullet) bullets.get(i);
-			Rectangle m1 = m.getBounds();
-			if (r1.intersects(m1) && en.isAlive()) {
-				en.isAlive = false;
-				m.visible = false;
-				dude.ammo++;
-			}
-			else if (r2.intersects(m1) && en2.isAlive()){
-				en2.isAlive = false;
-				m.visible = false;
-			}
-		}
-
-		Rectangle d = new Rectangle(75,v, 90, 73);
-		
-		if((d.intersects(r1) && en.isAlive()) || d.intersects(r2) && en2.isAlive()){
-			System.out.println(d.x + "x" + v + "y" + d.height + "height" + d.width + "width");
-			System.out.println(r1.x + "x" + r1.y + "y" + r1.height + "height" + r1.width + "width");
-			lost = true;
-		}
-*/
 	}
-
 }

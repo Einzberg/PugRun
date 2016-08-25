@@ -2,7 +2,6 @@ package OurGame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
@@ -15,23 +14,16 @@ public class Dude {
 	ImageIcon s = new ImageIcon("C:/Users/MaxBlue/Desktop/pugCop2.gif");
 	ImageIcon j = new ImageIcon("C:/Users/MaxBlue/Desktop/pugfart.png");
 
-
-
 	public Dude() {
 		x = 75;
-	//	y = 1500;
 		still = s.getImage();
 		nx2 = 640;
 		nx = 0;
-
 		ammo = 10;
 	}
 
-
-
 	public void move() {
 		x = x + dx;
-		//  y = y + dy;
 		nx2 = nx2 + dx;
 		nx = nx + dx;
 	}

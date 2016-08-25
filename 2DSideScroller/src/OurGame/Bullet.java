@@ -10,7 +10,6 @@ public class Bullet {
 	boolean visible;
 	Image img; 
 	
-	
 	public Bullet(int startX, int startY){
 		x = startX;
 		y = startY;
