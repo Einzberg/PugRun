@@ -64,9 +64,6 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		img = i.getImage();
 		time = new Timer(5, this);
 		time.start();
-
-		//en = new Enemy(700, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
-		//en2 = new Enemy(900, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
 		enemies = new ArrayList();
 		makeEnemies();
 		bullets = new ArrayList();
