@@ -10,10 +10,10 @@ Image img;
 int x,y;
 boolean isAlive;
 
-	public Enemy(int startX, int startY, String location){
+	public Enemy(int startX, int startY, ImageIcon enemy1){
 		x = startX;
 		y = startY;
-		ImageIcon newEnemy = new ImageIcon(location);
+		ImageIcon newEnemy = enemy1;
 		img = newEnemy.getImage();
 		isAlive = true;
 	}

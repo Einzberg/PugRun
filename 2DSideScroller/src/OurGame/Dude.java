@@ -11,8 +11,8 @@ public class Dude {
 	Image still;
 	int ammo = 10;
 
-	ImageIcon s = new ImageIcon("C:/Users/MaxBlue/Desktop/pugCop2.gif");
-	ImageIcon j = new ImageIcon("C:/Users/MaxBlue/Desktop/pugfart.png");
+	ImageIcon s = new ImageIcon(this.getClass().getResource("/Images/pugCop2.gif"));
+	ImageIcon j = new ImageIcon(this.getClass().getResource("/Images/pugfart.png"));
 
 	public Dude() {
 		x = 75;

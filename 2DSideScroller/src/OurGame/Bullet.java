@@ -13,7 +13,7 @@ public class Bullet {
 	public Bullet(int startX, int startY){
 		x = startX;
 		y = startY;
-		ImageIcon newBullet = new ImageIcon("C:/Users/MaxBlue/Desktop/bullet.png");
+		ImageIcon newBullet = new ImageIcon(this.getClass().getResource("/Images/bullet.png"));
 		img = newBullet.getImage();
 		visible = true;
 	}

@@ -15,6 +15,7 @@ public class Board extends JPanel implements ActionListener, Runnable {
 	int v = 272;
 	boolean k = false;
 	boolean lost = false;
+	
 	static Font font = new Font("SanSerif", Font.BOLD, 24);
 	int ammo = 3;
 	static ArrayList bullets;
@@ -29,6 +30,7 @@ public class Board extends JPanel implements ActionListener, Runnable {
 	ImageIcon plusFive;
 	boolean h = false;
 	boolean done = false;
+	ImageIcon enemy1;
 
 	public void fire(){
 		if (ammo > 0){
@@ -57,9 +59,10 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		dude = new Dude();
 		addKeyListener(new AL());
 		setFocusable(true);
-		ImageIcon i = new ImageIcon("C:/Users/MaxBlue/Desktop/test.jpg");
-		plusOne = new ImageIcon("C:/Users/MaxBlue/Desktop/+1.png");
-		plusFive = new ImageIcon("C:/Users/MaxBlue/Desktop/+5.png");
+		ImageIcon i = new ImageIcon(this.getClass().getResource("/Images/test.jpg"));
+		plusOne = new ImageIcon(this.getClass().getResource("/Images/+1.png"));
+		plusFive = new ImageIcon(this.getClass().getResource("/Images/+5.png"));
+		enemy1 = new ImageIcon(this.getClass().getResource("/Images/enemy.gif"));
 		img = i.getImage();
 		time = new Timer(5, this);
 		time.start();
@@ -77,11 +80,11 @@ public class Board extends JPanel implements ActionListener, Runnable {
 			Random randomnum = new Random();
 			int ranran = randomnum.nextInt(550);
 			if(ran == 0){
-				emi = new Enemy(x+ranran, 272, "C:/Users/MaxBlue/Desktop/enemy.png");
+				emi = new Enemy(x+ranran, 272, enemy1);
 				enemies.add(emi);
 				x+=830;}
 			else{
-				emi = new Enemy(x+ranran, 200, "C:/Users/MaxBlue/Desktop/enemy.png");
+				emi = new Enemy(x+ranran, 200, enemy1);
 				enemies.add(emi);
 				x+=830;}
 		}
