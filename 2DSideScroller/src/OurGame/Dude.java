@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 public class Dude {
-	int x, y, dy, nx2, nx;
+	public int x, y, dy, nx2, nx;
 	int dx = 5;
 	Image still;
 	int ammo = 10;

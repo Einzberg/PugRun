@@ -8,20 +8,20 @@ import java.util.Random;
 import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener, Runnable {
-	Dude dude;
+	public Dude dude;
 	public Image img;
 	Timer time;
 	Thread animator;
-	int v = 272;
+	public int v = 272;
 	boolean k = false;
-	boolean lost = false;
+	public static boolean lost = false;
 	
 	static Font font = new Font("SanSerif", Font.BOLD, 24);
-	int ammo = 3;
-	static ArrayList bullets;
+	public int ammo = 3;
+	public  static ArrayList bullets;
 	int bullety;
-	static ArrayList enemies;
-	int points;
+	public static ArrayList enemies;
+	private int points;
 	boolean fiver = false;
 	boolean oner = false;
 	int plusOneInt = 0;
@@ -31,7 +31,10 @@ public class Board extends JPanel implements ActionListener, Runnable {
 	boolean h = false;
 	boolean done = false;
 	ImageIcon enemy1;
-
+	
+	public int getPoints(){
+		return points;
+	}
 	public void fire(){
 		if (ammo > 0){
 			bullety = v + 23;
