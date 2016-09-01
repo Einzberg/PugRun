@@ -29,6 +29,7 @@ public class Board extends JPanel implements ActionListener, Runnable {
 	boolean isJumpPositionAtTop = false;
 	boolean isJumpFinished = false;
 	ImageIcon enemy1;
+	int instructionsCountdown = 500;
 
 	public int getPoints(){
 		return points;
@@ -145,6 +146,13 @@ public class Board extends JPanel implements ActionListener, Runnable {
 		graphics2d.setFont(new Font("Book Antiqua", Font.BOLD, 26));
 		graphics2d.setColor(Color.RED);
 		graphics2d.drawString("Points " + points, 100, 20);
+		
+		if(instructionsCountdown > 0){
+			graphics2d.setColor(Color.GREEN);
+			graphics2d.drawString("Press Up Arrow Key To Jump", 250, 150);
+			graphics2d.drawString("Press Space To Shoot", 250, 250);
+			instructionsCountdown--;
+		}
 
 		if(plusOneInt > 0){
 			plusOneInt--;
