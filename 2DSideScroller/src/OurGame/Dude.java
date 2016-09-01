@@ -11,12 +11,12 @@ public class Dude {
 	Image still;
 	int ammo = 10;
 
-	ImageIcon s = new ImageIcon(this.getClass().getResource("/Images/pugCop2.gif"));
-	ImageIcon j = new ImageIcon(this.getClass().getResource("/Images/pugfart.png"));
+	ImageIcon stillImageIcon = new ImageIcon(this.getClass().getResource("/Images/pugCop2.gif"));
+	ImageIcon jumpImageIcon = new ImageIcon(this.getClass().getResource("/Images/pugfart.png"));
 
 	public Dude() {
 		x = 75;
-		still = s.getImage();
+		still = stillImageIcon.getImage();
 		nx2 = 640;
 		nx = 0;
 		ammo = 10;
@@ -57,7 +57,7 @@ public class Dude {
 	}
 
 	public Image getJumpImage() {
-		return j.getImage();
+		return jumpImageIcon.getImage();
 	}
 
 	public Rectangle getBounds(){
@@ -66,16 +66,13 @@ public class Dude {
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_UP)
-		{
-			dy = 1;
-		}
+		if (key == KeyEvent.VK_UP)		
+			dy = 1;		
 	}
 
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_UP)
-		{dy = 0;
-		}
+		if (key == KeyEvent.VK_UP)	
+			dy = 0;		
 	}
 }

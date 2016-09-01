@@ -10,10 +10,10 @@ Image img;
 int x,y;
 boolean isAlive;
 
-	public Enemy(int startX, int startY, ImageIcon enemy1){
+	public Enemy(int startX, int startY, ImageIcon enemy){
 		x = startX;
 		y = startY;
-		ImageIcon newEnemy = enemy1;
+		ImageIcon newEnemy = enemy;
 		img = newEnemy.getImage();
 		isAlive = true;
 	}
@@ -35,7 +35,7 @@ boolean isAlive;
 	
 	public void move(int dx){
 		x = x - dx;
-}
+	}
 	
 	public Rectangle getBounds(){
 		return new Rectangle(x,y, 40, 36);
